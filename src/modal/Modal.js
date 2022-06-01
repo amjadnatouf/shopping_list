@@ -4,11 +4,7 @@ import "./modal.css";
 const Modal = ({ show, edit, setEdit, updateItem, showModal }) => {
   return (
     <div>
-      {show && (
-        <div className="layer" onClick={showModal}>
-          asd
-        </div>
-      )}
+      {show && <div className="layer" onClick={showModal}></div>}
       {show && (
         <div className="modal-container">
           <div className="modal-content">

@@ -14,18 +14,20 @@
 .modal-content {
   background: #fff;
   padding: 3rem;
-  border-radius: 1em;
+  border-radius: 0.3em;
   box-shadow: 5px 10px 1rem #11111130, 5px 10px 5rem #33333316;
 }
 @media screen and (max-width: 620px) {
   .modal-container {
     width: 90vw;
+    transition: all 0.3s linear;
   }
   .modal-footer {
     gap: 1rem;
   }
   .modal-footer .btn-edit {
     width: 80vw;
+    transition: all 0.3s linear;
   }
 }
 
@@ -37,7 +39,7 @@
 
 .btn-close {
   background-color: transparent;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   border: none;
   cursor: pointer;
   line-height: 1;

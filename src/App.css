@@ -177,7 +177,7 @@ Grocery List
   transition: all 0.3s linear;
   padding: 0.25rem 1rem;
   border-radius: 0.25rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .list-item:hover {
   color: #617d98;

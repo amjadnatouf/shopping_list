@@ -32,13 +32,17 @@
 .modal-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .btn-close {
   background-color: transparent;
-  font-size: 20px;
+  font-size: 1.7rem;
   border: none;
   cursor: pointer;
+  line-height: 1;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
 }
 
 .modal-body {

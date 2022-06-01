@@ -31,7 +31,7 @@ const Modal = ({ show, edit, setEdit, updateItem, showModal }) => {
                 Close
               </button>
               <button className="btn-edit" onClick={updateItem}>
-                Save changes
+                update
               </button>
             </div>
           </div>

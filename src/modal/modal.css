@@ -9,13 +9,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 600px;
 }
 .modal-content {
   background: #fff;
   padding: 3rem;
   border-radius: 1em;
   box-shadow: 5px 10px 1rem #11111130, 5px 10px 5rem #33333316;
-  width: 600px;
+}
+@media screen and (max-width: 620px) {
+  .modal-container {
+    width: 90vw;
+  }
+  .modal-footer {
+    gap: 1rem;
+  }
+  .modal-footer .btn-edit {
+    width: 80vw;
+  }
 }
 
 .modal-header {

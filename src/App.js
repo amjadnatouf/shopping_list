@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import List from "./List";
 import "./App.css";
 import Modal from "./modal/Modal";
 
 const App = () => {
-  const [list, setList] = useState([]);
+  const getLocalStorage = () => {
+    let list = localStorage.getItem("list");
+
+    if (list) {
+      return JSON.parse(localStorage.getItem("list"));
+    } else {
+      return [];
+    }
+  };
+
+  const [list, setList] = useState(getLocalStorage());
   const [name, setName] = useState("");
   const [edit, setEdit] = useState("");
   const [show, setShow] = useState(false);
@@ -20,6 +30,7 @@ const App = () => {
         title: name,
       };
       setList([...list, newItem]);
+      // localStorage.setItem(id, name);
       setName("");
     }
   };
@@ -49,6 +60,10 @@ const App = () => {
   const showModal = function () {
     setShow(!show);
   };
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   return (
     <div>

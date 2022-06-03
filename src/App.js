@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import List from "./List";
 import "./App.css";
 import Modal from "./modal/Modal";
+import { FaSort } from "react-icons/fa";
 
 const App = () => {
   const getLocalStorage = () => {
@@ -19,6 +20,15 @@ const App = () => {
   const [edit, setEdit] = useState("");
   const [show, setShow] = useState(false);
   const [id, setId] = useState(null);
+  const [isfilter, setIsfilter] = useState("");
+
+  const iscompleted = function (id) {
+    setList(
+      list.map((item) =>
+        item.id === id ? { ...item, completed: !item.completed } : item
+      )
+    );
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +38,7 @@ const App = () => {
       const newItem = {
         id: new Date().getTime().toString(),
         title: name,
+        completed: false,
       };
       setList([...list, newItem]);
       // localStorage.setItem(id, name);
@@ -39,7 +50,22 @@ const App = () => {
     setList(list.filter((item) => item.id !== id));
   };
 
+  const filter = (e) => {
+    if (e.target.value === "1") setIsfilter("1");
+    else if (e.target.value === "2") setIsfilter("2");
+    else setIsfilter("");
+  };
+
+  const sort = () => {
+    setList((state) => {
+      // state.sort((a, b) => a.title.localeCompare(b.title)).reverse(); //alfabet sort
+      state.sort((a, b) => a.completed - b.completed); //status sort
+      return [...state];
+    });
+  };
+
   const editItem = (id) => {
+    setEdit(list.find((g) => g.id === id).title);
     setId(id);
     showModal();
   };
@@ -81,7 +107,7 @@ const App = () => {
             <input
               type="text"
               className="input-control"
-              placeholder="e.g. eggs"
+              placeholder="e.g. items"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
@@ -93,13 +119,53 @@ const App = () => {
           </div>
         </form>
 
+        <div className="filter">
+          <p>List Items: </p>
+          <div>
+            <button className="btn-sort" onClick={sort}>
+              <FaSort />
+            </button>
+
+            <select name="select" onChange={filter}>
+              <option value="">all</option>
+              <option value="1">completed</option>
+              <option value="2">not completed</option>
+            </select>
+          </div>
+        </div>
+
         <div className="items-container">
-          <List
-            items={list}
-            removeItem={removeItem}
-            editItem={editItem}
-            showModal={showModal}
-          />
+          {isfilter === "1" ? (
+            <List
+              items={list.filter((e) => e.completed === true)}
+              // items={!filter ? list : filterd}
+              removeItem={removeItem}
+              editItem={editItem}
+              showModal={showModal}
+              // setIscompleted={setIscompleted}
+              iscompleted={iscompleted}
+            />
+          ) : isfilter === "2" ? (
+            <List
+              items={list.filter((e) => e.completed === false)}
+              // items={!filter ? list : filterd}
+              removeItem={removeItem}
+              editItem={editItem}
+              showModal={showModal}
+              // setIscompleted={setIscompleted}
+              iscompleted={iscompleted}
+            />
+          ) : (
+            <List
+              items={list}
+              // items={!filter ? list : filterd}
+              removeItem={removeItem}
+              editItem={editItem}
+              showModal={showModal}
+              // setIscompleted={setIscompleted}
+              iscompleted={iscompleted}
+            />
+          )}
           <button className="btn-danger" onClick={clearList}>
             Clear Items
           </button>

@@ -42,7 +42,7 @@ p {
   margin-bottom: 1.25rem;
   color: #617d98;
 }
-@media screen and (min-width: 800px) {
+/* @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
   }
@@ -64,7 +64,7 @@ p {
   h4 {
     line-height: 1;
   }
-}
+} */
 .btn {
   text-transform: uppercase;
   background: transparent;
@@ -140,6 +140,8 @@ Grocery List
   flex: 1 0 auto;
   color: #617d98;
   outline: none;
+  width: 80%;
+  border: none;
 }
 .regform .form-control .input-control::placeholder {
   color: #617d98;
@@ -179,10 +181,10 @@ Grocery List
   border-radius: 0.25rem;
   text-transform: capitalize;
 }
-.list-item:hover {
+/* .list-item:hover {
   color: #617d98;
   background: #f1f5f8;
-}
+} */
 .list-item:hover .title {
   color: #617d98;
 }
@@ -190,7 +192,9 @@ Grocery List
   margin-bottom: 0;
   color: #102a42;
   letter-spacing: 0.6px;
-  transition: all 0.3s linear;
+  /* transition: all 0.3s linear; */
+  cursor: pointer;
+  user-select: none;
 }
 .btn-edit,
 .btn-delete {
@@ -231,4 +235,35 @@ Grocery List
 }
 .items-container .btn-danger:hover {
   color: #bb2525;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #ddd;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+.filter > div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}
+.filter p {
+  margin: 0;
+}
+.filter select {
+  margin-left: 0rem;
+  padding: 0.14rem;
+  outline: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.btn-sort {
+  cursor: pointer;
 }

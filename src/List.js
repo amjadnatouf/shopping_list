@@ -1,14 +1,22 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-const List = ({ items, removeItem, editItem }) => {
+const List = ({ items, removeItem, editItem, iscompleted }) => {
+  const handelCom = (id) => {
+    iscompleted(id);
+  };
   return (
     <div className="grocery-list">
       {items.map((item) => {
         const { id, title } = item;
         return (
           <article className="list-item" key={id}>
-            <p className="title">{title}</p>
+            <p
+              className={`title ${item.completed && "completed"}`}
+              onClick={(e) => handelCom(item.id)}
+            >
+              {title}
+            </p>
             <div className="btn-container">
               <button
                 className="btn-edit"
